@@ -1,0 +1,99 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/indexcss.css">
+    <link rel="stylesheet" href="/static/css/registerst.css">
+</head>
+<body>
+    <div class="wrap">
+
+          <ul class="toggle_menu">
+            <li><a href="#">이용안내</a>
+              <ul class="second-menu">
+                <li><a href="#">예약안내</a></li>
+                <li><a href="#">결제안내</a></li>
+              </ul>
+            </li>
+            <li><a href="#">검색</a>
+              <ul class="second-menu" >
+                <li><a href="/sub">상세검색</a></li>
+                <li><a href="/sub">지역검색</a></li>
+                <li><a href="/sub">유형검색</a></li>
+              </ul>
+            </li>
+            <li><a href="#">이용후기</a></li>
+            <li><a href="/lists">고객센터</a></li>
+            <li><a href="#">마이 페이지</a></li>
+          </ul>
+        </aside>
+        <form action="/update_email" method="post" class='wrap'>
+        <div class="change_email_wrap">
+            <h2>이메일변경</h2>
+            <div class="login_id">
+                <input type="text" name="username" placeholder="username" value='{{session['username']}}'>
+                <input type="email" name="new_email" placeholder="Update Email">
+                <input type="text" name="phone" placeholder="Update phone number" maxlength="13">
+            </div>
+            <div class="submit">
+                <button type="submit" value='Submit'>회원정보 변경</button>
+            </div>
+            <div class="login_etc">
+                <div class="forgot_pw">
+                    <a href="/loginst">로그인</a>
+                </div>
+            <div class="forgot_pw">
+            <a href="/">홈으로</a>
+            </div>
+        </div>
+        </div>
+        </form>
+    </div>
+            <script>
+                function autoHypenPhone(str){
+                        str = str.replace(/[^0-9]/g, '');
+                        var tmp = '';
+                        if( str.length < 4){
+                            return str;
+                        }else if(str.length < 7){
+                            tmp += str.substr(0, 3);
+                            tmp += '-';
+                            tmp += str.substr(3);
+                            return tmp;
+                        }else if(str.length < 11){
+                            tmp += str.substr(0, 3);
+                            tmp += '-';
+                            tmp += str.substr(3, 3);
+                            tmp += '-';
+                            tmp += str.substr(6);
+                            return tmp;
+                        }else{
+                            tmp += str.substr(0, 3);
+                            tmp += '-';
+                            tmp += str.substr(3, 4);
+                            tmp += '-';
+                            tmp += str.substr(7);
+                            return tmp;
+                        }
+                        return str;
+                    }
+            var cellPhone = document.getElementById('cellPhone');
+            cellPhone.onkeyup = function(event){
+                    event = event || window.event;
+                    var _val = this.value.trim();
+                    this.value = autoHypenPhone(_val) ;
+            }
+            </script>
+</body>

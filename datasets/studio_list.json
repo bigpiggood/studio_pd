@@ -1,0 +1,204 @@
+[
+    {
+        "아이디": 0,
+        "스튜디오이름": "12 스튜디오",
+        "지역": "경기도",
+        "지역2": "광주",
+        "주소(지역)": "경기 광주시 오포읍 추자길 57 2층",
+        "유형": ["대형 스튜디오"],
+        "가격": 350000,
+        "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.197596920298!2d127.2105530757883!3d37.36150113585875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357caa006b981767%3A0xe8a1e6194ae36e57!2z6rK96riw64-EIOq0keyjvOyLnCDsmKTtj6zsnY0g7LaU7J6Q6ri4IDU3IDLsuLU!5e0!3m2!1sko!2skr!4v1694396989579!5m2!1sko!2skr",
+        "image":["/static/images/gwangju/12_outside.PNG", "/static/images/gwangju/12_inside1.PNG", "/static/images/gwangju/12_inside2.PNG"]
+       },
+       {
+        "아이디": 1,
+        "스튜디오이름": "김이박 스튜디오",
+        "지역": "경기도",
+        "지역2": "광주",
+        "주소(지역)": "경기 광주시 초월읍 무갑길 88-31 김이박스튜디오",
+        "유형": ["대형 스튜디오"],
+        "가격": 600000,
+        "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.80997113864!2d127.31530527579058!3d37.41796623263345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3563539274e1e35f%3A0xedef8f5f5afd3d9f!2z6rmA7J2067CV7Iqk7Yqc65SU7Jik!5e0!3m2!1sko!2skr!4v1694396863150!5m2!1sko!2skr",
+        "image":["/static/images/gwangju/kimleepark_outside.PNG", "/static/images/gwangju/kimleepark_inside.PNG", "/static/images/gwangju/kimleepark_inside2.PNG"]
+       },
+    {"아이디": 2,
+     "스튜디오이름": "비브 스튜디오스",
+     "지역": "경기도",
+     "지역2": "광주",
+     "주소(지역)": "경기 광주시 곤지암읍 오향길15번길 32",
+     "유형": ["LED 버추얼 스튜디오"],
+     "가격": 800000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.9964646016665!2d127.3708599757884!3d37.366260535587024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356355502a8c3abb%3A0x3c5fdf168bce5356!2z67mE67iM7Iqk7Yqc65SU7Jik7IqkIOuyhOy2lOyWvOyEvO2EsA!5e0!3m2!1sko!2skr!4v1694399084243!5m2!1sko!2skr",
+     "image":["/static/images/gwangju/bib_outside.png", "/static/images/gwangju/bib_inside1.PNG", "/static/images/gwangju/bib_inside2.PNG"]
+    },
+    {
+     "아이디": 3,
+     "스튜디오이름": "팀로드 스튜디오",
+     "지역": "경기도",
+     "지역2": "광주",
+     "주소(지역)": "경기 광주시 오포읍 능평로 78-11 C동 TEAM ROAD STUDIO",
+     "유형": ["LED 버추얼 스튜디오"],
+     "가격": 500000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.677982408819!2d127.1614343850579!3d37.35013166457253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b57b2810aca65%3A0xb9508806e2690111!2z6rK96riw64-EIOq0keyjvOyLnCDsmKTtj6zsnY0g64ql7Y-J66GcIDc4LTExIGM!5e0!3m2!1sko!2skr!4v1694399244093!5m2!1sko!2skr",
+     "image":["/static/images/gwangju/timroad_inside.PNG", "/static/images/gwangju/timroad_inside2.PNG", "/static/images/gwangju/timroad_inside2.PNG"]
+    },
+    {
+     "아이디": 4,
+     "스튜디오이름": "하와모두 스튜디오",
+     "지역": "경기도",
+     "지역2": "광주",
+     "주소(지역)": "경기 광주시 곤지암읍 연곡길 61",
+     "유형": ["LED 버추얼 스튜디오"],
+     "가격": 500000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.7016983193403!2d127.3828390850648!3d37.37323466323779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3563515470d0cbc5%3A0xe6b6eecd15be18b4!2z6rK96riw64-EIOq0keyjvOyLnCDqs6Tsp4DslZTsnY0g7Jew6rOh6ri4IDYx!5e0!3m2!1sko!2skr!4v1694399280902!5m2!1sko!2skr",
+     "image":["/static/images/gwangju/timroad_inside2.PNG", "/static/images/gwangju/timroad_inside2.PNG", "/static/images/gwangju/timroad_inside2.PNG"]
+    },
+    {
+     "아이디": 5,
+     "스튜디오이름": "화이담 스튜디오",
+     "지역": "경기도",
+     "지역2": "용인",
+     "주소(지역)": "경기 용인시 처인구 모현읍 매산리 262-9",
+     "유형": ["대형 스튜디오"],
+     "가격": 420000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.1862242380125!2d127.22210167578723!3d37.3380996871942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b550a7bdf8a21%3A0xebc5c58eeb866d7a!2z7ZmU7J2064u07Iqk7Yqc65SU7Jik!5e0!3m2!1sko!2skr!4v1694399304318!5m2!1sko!2skr",
+     "image":["/static/images/gwangju/hwaidam_outside.PNG", "/static/images/gwangju/hwaidam_inside.PNG","/static/images/gwangju/hwaidam_inside2.PNG"]
+    },
+    {
+     "아이디": 6,
+     "스튜디오이름": "웨이브 스튜디오",
+     "지역": "경기도",
+     "지역2": "남양주",
+     "주소(지역)": "경기 남양주시 오남읍 진건오남로708번길 37 웨이브스튜디오",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 500000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3156.976748083099!2d127.21072167580238!3d37.69674511665117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ccbd5d9487183%3A0x8763afb999c298d4!2z7Juo7J2067iM7Iqk7Yqc65SU7Jik!5e0!3m2!1sko!2skr!4v1694399327910!5m2!1sko!2skr",
+     "image":["/static/images/gwangju/wave_outside.PNG", "/static/images/gwangju/wave_inside1.PNG", "/static/images/gwangju/wave_inside2.PNG"]
+    },
+    {
+     "아이디": 7,
+     "스튜디오이름": "하이어 스튜디오",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기도 파주시 탄현면 낙하리 146-4(동오리길 94-27)",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 1800000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3150.9583157735347!2d126.73921847580837!3d37.83786170852355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cf37694018f01%3A0x99c66d8fd1dbb268!2z64yA7ZiV7Zi466as7KG0IO2VmOydtOyWtOyKpO2KnOuUlOyYpA!5e0!3m2!1sko!2skr!4v1694399350789!5m2!1sko!2skr",
+     "image":["/static/images/paju/higher_inside.png", "/static/images/paju/higher_inside2.png", "/static/images/paju/higher_outside.png"]
+    },
+    {
+     "아이디": 8,
+     "스튜디오이름": "에스디엠 아트센터",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 탄현면 오금로50번길 35",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 300000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.789122213507!2d126.71133937580771!3d37.818408109645425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c8c9590009587%3A0xf2c4a6060e119d29!2z6rK96riw64-EIO2MjOyjvOyLnCDtg4TtmITrqbQg7Jik6riI66GcNTDrsojquLggMzU!5e0!3m2!1sko!2skr!4v1694399653632!5m2!1sko!2skr",
+     "image":["/static/images/paju/sdm_inside.png", "/static/images/paju/sdm_inside2.png", "/static/images/paju/sdm_outside.png"]
+    },
+    {
+     "아이디": 9,
+     "스튜디오이름": "꽃길 스튜디오",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 광탄면 내화산길 65 1층",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 300000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.057662223777!2d126.8401866758064!3d37.78868841135859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9334f441b2e9%3A0x491ae93c96a8d604!2z6rK96riw64-EIO2MjOyjvOyLnCDqtJHtg4TrqbQg64K07ZmU7IKw6ri4IDY1IDHsuLU!5e0!3m2!1sko!2skr!4v1694399693341!5m2!1sko!2skr",
+     "image":["/static/images/paju/flowerroad_inside.PNG", "/static/images/paju/flowerroad_inside2.png", "/static/images/paju/flowerroad_inside3.png"]
+    },
+    {
+     "아이디": 10,
+     "스튜디오이름": "스튜디오 동감",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 탄현면 소리개길 177-17",
+     "유형": ["대형 스튜디오", "호리존", "LED 버추얼 스튜디오"],
+     "가격": 300000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.9546047650742!2d126.71027317580645!3d37.791103611219434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c8d7b8a1fb1e5%3A0x1e32fea433f4ca19!2z7Iqk7Yqc65SU7JikIOuPmeqwkA!5e0!3m2!1sko!2skr!4v1694399715445!5m2!1sko!2skr",
+     "image":["/static/images/paju/donggam_inside.png", "/static/images/paju/donggam_inside2.png", "/static/images/paju/donggam_virtual.png"]
+    },
+    {
+     "아이디": 11,
+     "스튜디오이름": "컬러세움 스튜디오",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 평화로348번길 200-42 컬러세움 스튜디오",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 300000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.4430667397132!2d126.74844617580597!3d37.77965511187899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c8da512a792c7%3A0x9d7245784dbc728c!2z6rK96riw64-EIO2MjOyjvOyLnCDtj4ntmZTroZwzNDjrsojquLggMjAwLTI1!5e0!3m2!1sko!2skr!4v1694399741310!5m2!1sko!2skr",
+     "image":["/static/images/paju/coloseum_inside.png", "/static/images/paju/coloseum_inside2.png", "/static/images/paju/coloseum_outside.png"]
+    },
+    {
+     "아이디": 12,
+     "스튜디오이름": "람 스튜디오",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 탄현면 갈현로29번길 238",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 300000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.088665226003!2d126.70873208518357!3d37.764519140538226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c8c1e3b8401fd%3A0x4b38f86539968c62!2z6rK96riw64-EIO2MjOyjvOyLnCDtg4TtmITrqbQg6rCI7ZiE66GcMjnrsojquLggMjM4!5e0!3m2!1sko!2skr!4v1694399767462!5m2!1sko!2skr",
+     "image":["/static/images/paju/ram_inside.png", "/static/images/paju/ram_inside2.png", "/static/images/paju/ram_outside.png"]
+    },
+    {
+     "아이디": 13,
+     "스튜디오이름": "탁트인 스튜디오",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 조리읍 뇌조로171번길 58 탁트인스튜디오",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 1440000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.4388471017737!2d126.82114277580493!3d37.75630701322371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c938fb10431c9%3A0x3dc947911a21335a!2z7YOB7Yq47J247Iqk7Yqc65SU7Jik!5e0!3m2!1sko!2skr!4v1694399869846!5m2!1sko!2skr",
+     "image":["/static/images/paju/tak_inside.png", "/static/images/paju/tak_inside2.png", "/static/images/paju/tak_outside.png"]
+    },
+    {
+     "아이디": 14,
+     "스튜디오이름": "와이드 스튜디오",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 소라지로 90-34",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 300000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.289584171294!2d126.70119377580411!3d37.73635001437263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c8fd74337ed09%3A0x8d2b1ca031a5aeaf!2z64yA7ZiVIO2YuOumrOyhtCDsmYDsnbTrk5wg7Iqk7Yqc65SU7Jik!5e0!3m2!1sko!2skr!4v1694399893077!5m2!1sko!2skr",
+     "image":["/static/images/paju/wide_inside.png", "/static/images/paju/wide_inside2.png", "/static/images/paju/wide_outside.png"]
+    },
+    {
+     "아이디": 15,
+     "스튜디오이름": "LK 스튜디오",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 방화리길 55-33 LK스튜디오",
+     "유형": ["대형 스튜디오", "호리존", "크로마키"],
+     "가격": 300000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.071158135691!2d126.6988691758044!3d37.74147481407765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c8ece0b873bd1%3A0xb3c2bda5ba4a1248!2sLK%20Studio!5e0!3m2!1sko!2skr!4v1694399907949!5m2!1sko!2skr",
+     "image":["/static/images/paju/lk_inside1.png", "/static/images/paju/lk_inside2.png", "/static/images/paju/lk_inside3.png"]
+    },
+    {
+     "아이디": 16,
+     "스튜디오이름": "연 스튜디오",
+     "지역": "경기도",
+     "지역2": "파주",
+     "주소(지역)": "경기 파주시 운정로 78-51",
+     "유형": ["대형 스튜디오", "호리존"],
+     "가격": 300000,
+     "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.9543083131266!2d126.77068208517011!3d37.720750343086344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c8e2234828157%3A0xfe547ad77d4cca4a!2z6rK96riw64-EIO2MjOyjvOyLnCDsmrTsoJXroZwgNzgtNTE!5e0!3m2!1sko!2skr!4v1694399930623!5m2!1sko!2skr",
+     "image":["/static/images/paju/yun_inside.png", "/static/images/paju/yun_inside2.png", "/static/images/paju/yun_outside.png"]
+    }
+   ,
+   {
+"아이디": 17,
+        "스튜디오이름": "턴 스튜디오",
+        "지역": "경기도",
+        "지역2": "파주",
+        "주소(지역)": "경기 파주시 신촌동 109-18 턴 스튜디오",
+        "유형": ["대형","호리존"],
+        "가격": 1800000,
+        "지도": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.5057178979373!2d126.69717[…]rj5kgMTA5LTE4!5e0!3m2!1sko!2skr!4v1694419453225!5m2!1sko!2skr",
+        "image": [
+            "/static/images/paju/turn_outside.PNG",
+            "/static/images/paju/turn_inside.PNG",
+            "/static/images/paju/turn_inside2.PNG"
+        ]
+    }
+    ]

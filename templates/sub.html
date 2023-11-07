@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>studio pd main</title>
+  <link rel="stylesheet" href="/static/css/reset.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/indexcss.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css'/>
+
+
+</head>
+
+<style>
+  .inner-star::before{color: #FF9600;}
+  .outer-star {position: relative;display: inline-block;color: #CCCCCC;}
+  .inner-star {position: absolute;left: 0;top: 0;width: 0%;overflow: hidden;white-space: nowrap;}
+  .outer-star::before, .inner-star::before {content: '\f005 \f005 \f005 \f005 \f005';font-family: 'Font Awesome 5 free';font-weight: 900;}
+
+ 
+</style>
+
+
+<body>
+  <div class="wrap">
+    <header>
+          <div class="header_wrap">
+            <h1 class="header_logo"><a href="/"><img src="/static/images/biglogojyahn.png" alt="로고"></a></h1>
+            <nav>
+              <!-- <button class="btn-close" onclick="document.querySelector('nav').style.display='none'">Χ</button> -->
+              <ul class="gnb">
+                <li><a>이용안내</a>
+                  <ul class="second-depth" id="aaa">
+                    <li><a href="#">예약안내</a></li>
+                    <li><a href="#">결제안내</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">검색</a>
+                  <ul class="second-depth" >
+                    <li><a href="/sub">상세검색</a></li>
+                    <li><a href="/sub">지역검색</a></li>
+                    <li><a href="/sub">유형검색</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">이용후기</a></li>
+                <li><a href="/lists">고객센터</a></li>
+              </ul>
+            </nav>
+            <div class="utilmenu">
+              {% if session['is_loged_in'] %}
+              <a href="/info"><span class="username">{{session['username']}}님</span></a>
+              {% else %}
+              <span class="username">guest</span>
+              {% endif %}
+              {% if session['is_loged_in'] %}
+              <a href="/logout"><img src="/static/images/logout.png" alt="마이메뉴"></a>
+              {% else %}
+              <a href="/loginst"><img src="/static/images/profile.png" alt="마이메뉴"></a>
+              {% endif %}
+              <a href="#" id="toggle_btn"><img src="/static/images/menu.png" alt="메뉴"></a>
+            </div>
+          </div>
+        </header>
+        <aside>
+          <ul class="toggle_menu">
+            <li><a href="#">이용안내</a>
+              <ul class="second-menu">
+                <li><a href="#">예약안내</a></li>
+                <li><a href="#">결제안내</a></li>
+              </ul>
+            </li>
+            <li><a href="#">검색</a>
+              <ul class="second-menu" >
+                <li><a href="/sub">상세검색</a></li>
+                <li><a href="/sub">지역검색</a></li>
+                <li><a href="/sub">유형검색</a></li>
+              </ul>
+            </li>
+            <li><a href="#">이용후기</a></li>
+            <li><a href="/lists">고객센터</a></li>
+            <li><a href="#">마이 페이지</a></li>
+          </ul>
+        </aside>
+
+      <br>
+    <div class="container" style="width: 1052px;">
+      <div class="row" style="justify-content: flex-start;">
+        <select id="region" class="form-select-lg mb-2 col-sm-2" aria-label=".form-select-lg example" style="margin-left: 3.5%;">
+          <option selected>지역</option>
+          <option value="1">경기 광주</option>
+          <option value="2">경기 남양주</option>
+          <option value="3">경기 용인</option>
+          <option value="4">경기 파주</option>
+          <option value="return">돌아가기</option>
+        </select>
+
+        <select id="category" class="form-select-lg mb-2 col-sm-2" aria-label=".form-select-sm example" style="margin-left: 1%;">
+          <option selected>유형</option>
+          <option value="1">대형</option>
+          <option value="2">호리존</option>
+          <option value="3">버추얼</option>
+          <option value="4">크로마키</option>
+          <option value="return">돌아가기</option>
+        </select>
+
+        <select id="price" class="form-select-lg mb-2 col-sm-2" aria-label=".form-select-sm example" style="margin-left: 1%;">
+          <option selected>가격순</option>
+          <option value="low">낮은순</option>
+          <option value="high">높은순</option>s
+          <option value="return">돌아가기</option>
+        </select>
+
+        <select id="reivew" class="form-select-lg mb-2 col-sm-2" aria-label=".form-select-sm example" style="margin-left: 1%;">
+          <option selected>별점순</option>
+          <option value="high">별점 높은순</option>
+          <option value="low">별점 낮은순</option>
+          <option value="return">돌아가기</option>
+        </select>
+      </div>
+      <br>
+
+      <!-- Start retroy layout blog posts -->
+      <section class="section bg-light">
+        <div class="container">
+          <div class="row align-items-stretch retro-layout">
+            <div class="row" style="margin: 0 auto;">
+              {% for x in data %}
+
+              <!-- hidecard{{ x['studio_id'] }} 를  hidecard{{ loop.index-1 }} 로 변경!!
+                {{ loop.index }} : jinja2 반복문에서 인덱스를 1부터 반복문 종료까지 부여함.  
+                {{ loop.index-1 }} : jinja2 반복문에서 인덱스를 0부터 반복문 종료까지 부여함.              
+              -->
+
+              <div class="col-md-6 col-sm-12 hidecard{{ loop.index-1 }}">
+                <a href="/detail/{{ x['studio_id'] }}" class="h-entry mb-30 v-height gradient" id="address{{ loop.index-1 }}">
+                  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="2000">
+                        <img src="{{ x['image'][0] }}" id="img{{ loop.index-1 }}a" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{ x['image'][1] }}" id="img{{ loop.index-1 }}b" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{ x['image'][2] }}" id="img{{ loop.index-1 }}c" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text" style="display: inline-block;">
+                   <h2 id="number{{ loop.index-1 }}" style="font-size: 2rem;">{{ x['스튜디오이름'] }} </h2><br>
+                   <h2 id="price_info{{ loop.index-1 }}" style="color: rgb(255, 255, 255);">
+                    대여(1일 기준) : {{ '{:,}'.format(x['가격']) }}원 </h2>
+                   
+                     <div class='RatingStar' id="star{{ loop.index-1 }}">
+                      <div class='RatingScore'>
+                        <div class='outer-star'><div class='inner-star'></div></div>
+                      </div>
+                      <span id="star_number{{ loop.index-1 }}">( {{ x['reviewStar']|round(1) }} )</span>
+                   </div>
+                  <!--별점 표시  -->
+                  
+                </div>
+                </a>
+              </div>
+              {% endfor%}
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div class="footerwrap">
+          <div class="footer_logo"><img src="/static/images/biglogojyahn.png" alt="로고"></div>
+          <div class="footer_text">
+            <span>서울시 노원구 동일로 1351 2층(상계동) / 대표자: 안지영 / 사업자번호:210-91-08887</span>
+            <span>Tel:02-952-1163 / Fax:02-952-7116 / 대표 E-mail:webmaster@studiopd.co.kr</span>
+            <span>Copyright ⓒ studiopd.corp.All Rights Reserved.</span>
+          </div>
+          <div class="circle">
+            <img src="/static/images/twitter.png" alt="트위터">
+            <img src="/static/images/instagram.png" alt="인스타">
+            <img src="/static/images/facebook.png" alt="페이스북">
+          </div>
+        </div>
+      </footer>
+
+
+      <script>
+
+        // 원본 데이터
+        var studio_data = {{ data | safe }};
+        console.log(studio_data)
+        console.log(studio_data[7].reviewStar)
+        // 복사 데이터(가격별 정렬할 때 사용)
+        var studio_data_copy = studio_data.slice()
+
+        // a(스튜디오 수)만큼 스튜디오 이름/링크주소/리뷰별점/사진을 넣는 함수
+        function studio_show(a) {
+          for (i = 0; i < a.length; i++) {
+            let address = '#address' + i
+            let number = '#number' + i
+            let price_info = '#price_info' + i
+            let imgnuma = '#img' + i + 'a'
+            let imgnumb = '#img' + i + 'b'
+            let imgnumc = '#img' + i + 'c'
+            let star_number = '#star_number' + i
+
+
+            $(address).attr("href", "/detail/" + a[i].studio_id); // 각 아이디값을 주소 끝자리로 하는 링크
+            $(number).html(a[i].스튜디오이름);
+            $(price_info).html("대여(1일 기준) : " + a[i].가격.toLocaleString() + "원");
+            $(imgnuma).attr("src", a[i].image[0]);
+            $(imgnumb).attr("src", a[i].image[1]);
+            $(imgnumc).attr("src", a[i].image[2]);
+
+            // 리뷰별점 소수 반올림하여 소수 첫째자리까지만 표시
+            // $(star_number).html("(" + parseFloat(a[i].reviewStar).toFixed(1) + ")");
+
+            // 리뷰별점 소수 반올림하여 소수 첫째 자리까지만 표시
+            var reviewStar = parseFloat(a[i].reviewStar);
+            var formattedStar = reviewStar.toFixed(1);
+            formattedStar = formattedStar == '0.0' ? '0' : formattedStar;
+            $(star_number).html("(" + formattedStar + ")");
+
+
+
+
+            let star = 'star' + i
+            // console.log(star)
+            r_star = a[i].reviewStar
+            // console.log(r_star)
+            ratings = {RatingScore: r_star}
+            totalRating = 5;
+            table = document.querySelector('#'+ star);
+            // console.log(table)
+            // console.log('hi')
+            console.log(r_star)
+
+            function rateIt() {
+              // console.log(ratings)
+              for (rating in ratings){
+                // console.log(ratings[rating])
+                ratingPercentage = ratings[rating] / totalRating * 100;
+                // console.log(ratingPercentage)
+                ratingRounded = Math.round(ratingPercentage / 10) * 10 + '%';
+                // console.log(ratingRounded)
+                star = table.querySelector(`.${rating} .inner-star`);
+                // numberRating = table.querySelector(`.${rating} .numberRating`);
+                star.style.width = ratingRounded;
+                // console.log(ratings[rating])
+                // numberRating.innerText = ratings[rating];
+                  }
+                } 
+
+              rateIt()
+
+          }
+        }
+
+      // 별점 함수 
+      function star(a) {
+        for (i = 0; i < a.length; i++){
+          let star = 'star' + i
+          // console.log(star)
+          r_star = a[i].reviewStar
+          // console.log(r_star)
+          ratings = {RatingScore: r_star}
+          totalRating = 5;
+          table = document.querySelector('#'+ star);
+          // console.log(table)
+          // console.log('hi')  
+          console.log(r_star)
+
+          function rateIt() {
+            // console.log(ratings)
+            for (rating in ratings){
+              // console.log(ratings[rating])
+              ratingPercentage = ratings[rating] / totalRating * 100;
+              // console.log(ratingPercentage)
+              ratingRounded = Math.round(ratingPercentage / 10) * 10 + '%';
+              // console.log(ratingRounded)
+              star = table.querySelector(`.${rating} .inner-star`);
+              console.log(star)
+              // numberRating = table.querySelector(`.${rating} .numberRating`);
+              star.style.width = ratingRounded;
+              // console.log(ratings[rating])
+              // numberRating.innerText = ratings[rating];
+            }
+          } 
+
+          rateIt() 
+            
+          console.log('hi')  
+          }
+        }
+
+      star(studio_data)
+
+
+
+        // 초기화. 전체 스튜디오의 개수만큼 이름 및 사진을 넣는 함수
+        // 클래스 "hidecard" + 0 ~ x(전체 스튜디오 수) 만큼 생성
+        function reset() {
+          for (let x = 0; x < studio_data.length; x++) {
+            document.getElementsByClassName("hidecard" + x)[0].style.display = "block";
+          }
+        }
+
+        // * 스튜디오 가격별 정렬
+        $(document).ready(function () {
+          $(document).on("change", "#price", function () {
+            // 아이디 price인 요소안에 있는 option태그 value값을 가져옴
+            let price = document.getElementById("price");
+            let priceValue = price.options[price.selectedIndex].value;
+
+            // 초기화. option태그가 변경될때마다 전체 스튜디오의 개수만큼 이름 및 사진을 넣는 함수.
+            reset()
+
+            // value값이 low일 경우 낮은 가격순으로 정렬
+            if (priceValue == "low") {
+              studio_data_copy.sort(function (a, b) {
+                return a.가격 - b.가격;
+              });
+              studio_show(studio_data_copy)
+            }
+            // value값이 high일 경우 높은 가격순으로 정렬
+            else if (priceValue == "high") {
+              studio_data_copy.sort(function (a, b) {
+                return b.가격 - a.가격;
+              });
+              studio_show(studio_data_copy)
+
+            } // value값이 return일 경우 원본데이터로 정렬
+            else if (priceValue == "return") {
+              studio_show(studio_data)
+            }
+          })
+        });
+
+
+        // * 스튜디오 평점별 정렬
+        $(document).ready(function () {
+          $(document).on("change", "#reivew", function () {
+            // 아이디 reivew인 요소안에 있는 option태그 value값을 가져옴
+            let reivew = document.getElementById("reivew");
+            let reivewValue = reivew.options[reivew.selectedIndex].value;
+
+            // 초기화. option태그가 변경될때마다 전체 스튜디오의 개수만큼 이름 및 사진을 넣는 함수.
+            reset()
+
+            // value값이 low일 경우 낮은 가격순으로 정렬
+            if (reivewValue == "low") {
+              studio_data_copy.sort(function (a, b) {
+                return a.reviewStar - b.reviewStar;
+              });
+              studio_show(studio_data_copy)
+            }
+            // value값이 high일 경우 높은 가격순으로 정렬
+            else if (reivewValue == "high") {
+              studio_data_copy.sort(function (a, b) {
+                return b.reviewStar - a.reviewStar;
+              });
+              studio_show(studio_data_copy)
+
+            } // value값이 return일 경우 원본데이터로 정렬
+            else if (reivewValue == "return") {
+              studio_show(studio_data)
+            }
+          })
+        });
+
+
+        // * 스튜디오 지역별 정렬
+        // 지역별(json데이터 키값 '지역2')필터링 후 각각 변수에 리스트로 저장
+        var studio_data1 = studio_data.filter(element => element.지역2 === "광주");
+        var studio_data2 = studio_data.filter(element => element.지역2 === "남양주");
+        var studio_data3 = studio_data.filter(element => element.지역2 === "용인");
+        var studio_data4 = studio_data.filter(element => element.지역2 === "파주");
+
+        console.log(studio_data1)
+        console.log(studio_data2)
+        console.log(studio_data3)
+        console.log(studio_data4)
+        // 필터링된 스튜디오 수를 인덱스번호로 하는 클래스 "hidecard"+hidecard_number 부터
+        // 전체 스튜디오 수 - 필터링된 스튜디오 수만큼 반복해서 제거.
+        // ex) 광주 스튜디오 수(5), 전체 스튜디오 수(17) 이면,
+        //     "hidecard"+5(광주 스튜디오 수) 부터 "hidecard"+16 (전체 스튜디오 인덱스 끝 번호) 까지 12개 제거하고,
+        //     "hidecard"+0 ~ 4까지 총 5개만 남김.
+        function studio_hide(a) {
+          for (let x = 0; x < studio_data.length - a.length; x++) {
+            let hidecard_number = a.length + x
+            document.getElementsByClassName("hidecard" + hidecard_number)[0].style.display = "none";
+          }
+        }
+
+        $(document).ready(function () {
+          $(document).on("change", "#region", function () {
+            // 아이디 region인 요소안에 있는 option태그 value값을 가져옴
+            let region = document.getElementById("region");
+            let regionValue = region.options[region.selectedIndex].value;
+
+            // 초기화. option태그가 변경될때마다 전체 스튜디오의 개수만큼 이름 및 사진을 넣는 함수.
+            reset()
+
+            // 광주 지역 정렬
+            if (regionValue == "1") {
+              studio_hide(studio_data1)
+              studio_show(studio_data1)
+            }
+            // 남양주 지역 정렬
+            else if (regionValue == "2") {
+              studio_hide(studio_data2)
+              studio_show(studio_data2)
+            }
+            // 용인 지역 정렬
+            else if (regionValue == "3") {
+              studio_hide(studio_data3)
+              studio_show(studio_data3)
+            }
+            // 파주 지역 정렬
+            else if (regionValue == "4") {
+              studio_hide(studio_data4)
+              studio_show(studio_data4)
+            }
+
+            else if (regionValue == "return") {
+              studio_show(studio_data)
+            }
+          })
+        });
+
+        // * 스튜디오 유형별 정렬
+        // 키값 '유형'안에 특정단어가 있는 경우만 뽑아서 새로운 변수에 리스트로 저장
+        var studio_data5 = studio_data.filter(element => element.유형.includes("대형 스튜디오"));
+        var studio_data6 = studio_data.filter(element => element.유형.includes("호리존"));
+        var studio_data7 = studio_data.filter(element => element.유형.includes("LED 버추얼 스튜디오"));
+        var studio_data8 = studio_data.filter(element => element.유형.includes("크로마키"));
+
+        $(document).ready(function () {
+          $(document).on("change", "#category", function () {
+            let category = document.getElementById("category");
+            let categoryValue = category.options[category.selectedIndex].value;
+
+            reset()
+
+            // "대형 스튜디오"를 포함하고 있는 스튜디오
+            if (categoryValue == "1") {
+              studio_hide(studio_data5)
+              studio_show(studio_data5)
+            }
+            // "호리존"를 포함하고 있는 스튜디오
+            else if (categoryValue == "2") {
+              studio_hide(studio_data6)
+              studio_show(studio_data6)
+            }
+            // "LED 버추얼 스튜디오"를 포함하고 있는 스튜디오
+            else if (categoryValue == "3") {
+              studio_hide(studio_data7)
+              studio_show(studio_data7)
+            }
+            // "크로마키"를 포함하고 있는 스튜디오
+            else if (categoryValue == "4") {
+              studio_hide(studio_data8)
+              studio_show(studio_data8)
+            }
+            else if (categoryValue == "return") {
+              studio_show(studio_data)
+            }
+          })
+        });
+
+
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+
+
+</html>

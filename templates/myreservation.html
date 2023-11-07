@@ -1,0 +1,232 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/indexcss.css">
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<style>
+  /* .btn_deco{
+    background-color: rgb(207, 192, 222);
+    border-radius: 10px;
+    border: none;
+    
+  } */
+
+#btbbtb{
+  background-color: rgb(207, 192, 222);
+  border-radius: 10px;
+  height: 15px;
+  border: none;
+  padding-top: 10px;
+}
+
+#btbbtb:hover{
+  color: white;
+} 
+
+.my_reservation{
+  width: 40%;
+  border-radius: 20px;
+  border-color: blueviolet;
+}
+
+.reivew_btn{
+  background-color: rgb(207, 192, 222);
+  border-radius: 10px;
+  border: none;
+}
+.reivew_btn:hover{
+  color: white;
+}
+
+
+</style>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="header_wrap">
+        <h1 class="header_logo"><a href="/"><img src="/static/images/biglogojyahn.png" alt="로고"></a></h1>
+        <nav>
+          <ul class="gnb">
+            <li><a>이용안내</a>
+              <ul class="second-depth">
+                <li><a href="#">예약안내</a></li>
+                <li><a href="#">결제안내</a></li>
+              </ul>
+            </li>
+            <li><a href="#">검색</a>
+              <ul class="second-depth" >
+                <li><a href="/sub">상세검색</a></li>
+                <li><a href="/sub">지역검색</a></li>
+                <li><a href="/sub">유형검색</a></li>
+              </ul>
+            </li>
+            <li><a href="/change_email">이용후기</a></li>
+            <li><a href="/lists">고객센터</a></li>
+          </ul>
+        </nav>
+        <div class="utilmenu">
+          {% if session['is_loged_in'] %}
+          <a href="/info"><span class="username">{{session['username']}}님</span></a>
+          {% else %}
+          <span class="username">guest</span>
+          {% endif %}
+          {% if session['is_loged_in'] %}
+          <a href="/logout"><img src="/static/images/logout.png" alt="마이메뉴"></a>
+          {% else %}
+          <a href="/loginst"><img src="/static/images/profile.png" alt="마이메뉴"></a>
+          {% endif %}
+          <a href="#" id="toggle_btn"><img src="/static/images/menu.png" alt="메뉴"></a>
+        </div>
+      </div>
+    </header>
+    <aside>
+      <ul class="toggle_menu">
+        <li><a href="#">이용안내</a>
+          <ul class="second-menu">
+            <li><a href="#">예약안내</a></li>
+            <li><a href="#">결제안내</a></li>
+          </ul>
+        </li>
+        <li><a href="#">검색</a>
+          <ul class="second-menu" >
+            <li><a href="/sub">상세검색</a></li>
+            <li><a href="/sub">지역검색</a></li>
+            <li><a href="/sub">유형검색</a></li>
+          </ul>
+        </li>
+        <li><a href="#">이용후기</a></li>
+        <li><a href="/lists">고객센터</a></li>
+        <li><a href="#">마이 페이지</a></li>
+      </ul>
+    </aside>
+    <div class="my_reservation">
+        <form action="/myreservation" method="POST" name="form1" onsubmit="return check()">
+          <!-- <div class="all_select">
+            <input type="checkbox" id="all_select" name="all_select">
+            <label for="all_select">전체 선택하기</label>
+          </div> -->
+          <p style="font-size: 12px; color: rgb(159, 159, 159);">※ 리뷰는 예약일로부터 1일이 지난 이후에 작성가능합니다.</p>
+          <p style="font-size: 12px; color: rgb(159, 159, 159);">※ 예약일이 지난 이후에는 취소가 불가합니다.</p>
+          <p style="font-size: 12px; color: rgb(159, 159, 159);">※ 환불 처리는 일주일 이상 소요됩니다. </p>
+          <br><br>
+
+          <div>
+            <ul>
+              {% for x in data %}
+              <!-- x[0] = 예약일,   x[1] = 스튜디오이름,   x[2] = 스튜디오number, x[3] = 스튜디오id  x[4] = 예약일/현재일 차이-->
+                  <li style="color: rgb(72, 72, 72);"> {{ x[1] }} (예약일 : {{ x[0] }})       
+
+                  {% if 0 >= x[4] %}
+                    <input type="checkbox" name="number" value="{{ x[2] }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" 
+                    value="리뷰 남기기" id="{{ x[2] }}" disabled class="reivew_btn">
+                    <!-- <span style="font-size: 12px;">* 리뷰는 예약일로부터 1일이 지난 이후에 작성가능합니다.</span> -->
+                  </li>
+                  {% elif x[4] > 0 %}
+                    <input type="button" onclick="window.open('/popup/{{ x[0] }}/{{ x[1] }}/{{ x[2] }}/{{ x[3] }}','review','width=800,height=600')" 
+                    value="리뷰 남기기" id="{{ x[2] }}" class="reivew_btn">
+                    <input type="checkbox" name="number" value="{{ x[2] }}" disabled>
+                    <!-- <span style="font-size: 12px;">* 예약일이 지난 이후에는 취소가 불가합니다.</span> -->
+
+                  {% endif %}
+                  <hr style="background-color: rgb(171, 112, 230); height: 1px; border: 0;">
+              {% endfor %}
+            </ul>
+          </div>
+          <button type="submit" id="btbbtb" class="submit">예약취소</button>
+          <!-- <input type="button" onclick="window.open('/review_list','review_list','width=800,height=600')" value="내가 쓴 리뷰(미구현)" class="btn_deco">  -->
+                    
+        </form>
+    </div>
+  </div>
+</body>
+
+<script>
+
+
+  // *** 체크박스 전체 선택 및 해제 ***
+
+//  #all_select 전체 선택하기 체크박스 id
+//  input[name='체크박스 name']
+  $("#all_select").click(function(){
+    if($("#all_select").is(":checked")){
+      $("input[name=number]").prop("checked", true);
+    }else {
+      $("input[name=number]").prop("checked", false);
+    }
+  });
+
+  $("input[name=number]").click(function(){
+    var totalArr = $("input[name=number]").length;
+    var checked = $("input[name=number]:checked").length;
+
+    if(totalArr != ckecked){
+      $("#all_select").prop("checked", false);
+    }else{
+      $("#all_select").prop("checked", true);
+    }
+  });
+
+
+
+// 체크박스 선택안된 상태에서 예약취소 버튼 누르면 submit 안함.
+//  form 태그에 onsubmit = 'return check()'
+//  check()함수가 true일때는 submit하고, false일때는 submit안함 
+
+function check(){
+  //  html 'form'의 name = form1
+  var form = document.form1;
+  var b=0;
+  for (i=0;  i < form.elements.length; i++){
+    if(form.elements[i].name == 'number'){
+      if(form.elements[i].checked == true){
+        b++;
+      }
+    }
+  }
+  if(b == 0){
+    alert("하나이상 선택해주세요!");
+    return false;
+  } else {
+    return true;
+    // form.submit();
+  }
+}
+</script>
+
+
+<!-- <script>
+  function btnDisabled()  {
+  const target = document.querySelector('input[type=button]');
+  target.disabled = true;
+}
+
+</script> -->
+
+
+
+
+</html>
+
+
+
+
+
+
+

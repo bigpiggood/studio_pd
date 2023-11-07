@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+
+    <link rel="stylesheet" href="/static/css/liststyle.css">
+    <link rel="stylesheet" href="/static/css/listmedia.css">
+    <link rel="stylesheet" href="/static/css/indexcss.css">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="wrap">
+    <header>
+          <div class="header_wrap">
+            <h1 class="header_logo"><a href="/"><img src="/static/images/biglogojyahn.png" alt="로고"></a></h1>
+            <nav>
+              <!-- <button class="btn-close" onclick="document.querySelector('nav').style.display='none'">Χ</button> -->
+              <ul class="gnb">
+                <li><a>이용안내</a>
+                  <ul class="second-depth" id="aaa">
+                    <li><a href="#">예약안내</a></li>
+                    <li><a href="#">결제안내</a></li>
+                  </ul>
+                </li>
+                <li><a href="/sub">검색</a>
+                  <ul class="second-depth" >
+                    <li><a href="/sub">상세검색</a></li>
+                    <li><a href="/sub">지역검색</a></li>
+                    <li><a href="/sub">유형검색</a></li>
+                  </ul>
+                </li>
+                <li><a href="/lists">이용후기</a></li>
+                <li><a href="/lists">고객센터</a></li>
+              </ul>
+            </nav>
+            <div class="utilmenu">
+              {% if session['is_loged_in'] %}
+              <span class="username">{{session['username']}}님</span>
+              {% else %}
+              <span class="username">guest</span>
+              {% endif %}
+              {% if session['is_loged_in'] %}
+              <a href="/logout"><img src="/static/images/logout.png" alt="마이메뉴"></a>
+              {% else %}
+              <a href="/loginst"><img src="/static/images/profile.png" alt="마이메뉴"></a>
+              {% endif %}
+              <a href="#" id="toggle_btn"><img src="/static/images/menu.png" alt="메뉴"></a>
+            </div>
+          </div>
+        </header>
+<div class="board_wrap">
+        <div class="board_title">
+            <div class="strong"><strong>고객센터</strong></div>
+            <p>고객센터을 빠르고 정확하게 안내해드립니다.</p>
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                    <form  action="/lists", method="POST">
+
+                    <!-- Text input -->
+                    <div class="title">
+                      <dl>
+                      <dt>카테고리</dt>
+                      <dd><input type="text" name="selecttitle" id="input" placeholder="카테고리선택" disabled/>
+                      <select class="select1" name='title' id="select">
+                	<!--<option value="공지사항">공지사항</option>-->
+                	<option value="결제오류">결제오류</option>
+                	<option value="예약오류">예약오류</option>
+                	<option value="스튜디오문의">스튜디오문의</option>
+                	<option value="기타문의">기타문의</option>
+                </select></dd>
+                      </dl>
+                    </div>
+                    <!-- Message input -->
+                    <div class="cont">
+                      <textarea placeholder="내용 입력" name="cont" rows="4"></textarea>
+                    </div>
+                    <!-- Text input -->
+                        <div class="title">
+                        <dl>
+                        <dt>작성자</dt>
+                        <dd><input type="text" name="author" placeholder=" 글쓴이 입력" value='{{session['username']}}' /></dd>
+                        </dl>
+                        </div>
+                    <!-- Submit button -->
+                    <div class="bt_wrap">
+                        <a class="on"><button type="submit">등록</button></a>
+                        <a href="/lists" class="on">취소</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<script>
+const select = document.querySelector("#select");
+const input = document.querySelector("#input");
+
+select.addEventListener("change", () => {
+  input.value = select.value;
+});
+</script>

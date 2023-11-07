@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/registerst.css">
+</head>
+
+<script language="javascript">
+// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
+//document.domain = "abc.go.kr";
+
+function goPopup(){
+	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var pop = window.open("http://localhost:5000/address_pop","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+    
+	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+}
+/** API 서비스 제공항목 확대 (2017.02) **/
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
+						, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo){
+	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	document.form.roadAddrPart1.value = roadAddrPart1;
+	document.form.roadAddrPart2.value = roadAddrPart2;
+	document.form.addrDetail.value = addrDetail;
+	document.form.zipNo.value = zipNo;
+}
+</script>
+
+
+<title>스튜디오 등록 페이지</title>
+
+</head>
+
+
+<style>
+  /* 바탕 배경 이미지 */
+.pop-address-search { background-image: url(http://www.0000.com/img/backImg.png);}
+/* 회사 로고 이미지 */
+.pop-address-search .pop-address-search-inner .logo { background: url(http://www.0000.com/img/logo.png) no-repeat; background-position:center; }
+
+/* 바탕 배경색상 */
+.pop-address-search { background-color:#ECECEC; }
+/* 검색창 색상 */
+.pop-address-search .pop-address-search-inner .wrap input { background-color:#FFFFFF; }
+/* 검색버튼 색상 */
+.pop-address-search .pop-address-search-inner .wrap { background-color:#FFFFFF; }
+/* 본문 배경색(홀수) */
+.pop-address-search .pop-address-search-inner .result table.data-col tbody tr:nth-child(odd) td {background:#FFFFFF}
+/* 본문 배경색(짝수) */
+.pop-address-search .pop-address-search-inner .result table.data-col tbody tr:nth-child(even) td {background:#FFFFFF}
+						
+</style>
+
+<body>
+<form name="form" id="form" method="post">
+	<div class="wrap">
+		<div class="login">
+				<h2>스튜디오 등록하기</h2>
+
+				<div class="login_id">
+						<h4>스튜디오 이름</h4>
+						<input type="text" name="username" id="" placeholder="이름">
+				</div>
+				
+				<div>
+					<table >
+							<colgroup>
+								<col style="width:20%"><col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th>우편번호</th>
+									<td>
+											<input type="hidden" id="confmKey" name="confmKey" value=""  >
+										<input type="text" id="zipNo" name="zipNo" readonly style="width:100px">
+										<input type="button"  value="주소검색" onclick="goPopup();">
+									</td>
+								</tr>
+								<tr>
+									<th>도로명주소</th>
+									<td><input type="text" id="roadAddrPart1" style="width:85%"></td>
+								</tr>
+								<tr>
+									<th>상세주소</th>
+									<td>
+										<input type="text" id="addrDetail" style="width:40%" value="">
+										<input type="text" id="roadAddrPart2"  style="width:40%" value="">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+
+
+
+
+				<div class="login_id">
+						<h4>인증번호</h4>
+						<input type="text" name="number" id="" placeholder="인증번호" required>
+				</div>
+				<div class="login_id">
+						<h4>핸드폰번호</h4>
+						<input type="text" name="phone" id="cellPhone" placeholder="핸드폰번호" maxlength="13">
+				</div>
+				<div class="login_pw">
+						<h4>비밀번호</h4>
+						<input type="password" name="password" id="" placeholder="Password">
+				</div>
+				<div class="submit">
+						<button type="submit">회원가입</button>
+				</div>
+				<div class="login_etc">
+						<div class="forgot_pw">
+								<a href="/loginst">로그인</a>
+						</div>
+						<div class="forgot_pw">
+						<a href="/">홈으로</a>
+				</div>
+				<input type="address">
+
+		</div>
+</div>
+
+	
+</form>
+</body>
+<script>
+function autoHypenPhone(str){
+            str = str.replace(/[^0-9]/g, '');
+            var tmp = '';
+            if( str.length < 4){
+                return str;
+            }else if(str.length < 7){
+                tmp += str.substr(0, 3);
+                tmp += '-';
+                tmp += str.substr(3);
+                return tmp;
+            }else if(str.length < 11){
+                tmp += str.substr(0, 3);
+                tmp += '-';
+                tmp += str.substr(3, 3);
+                tmp += '-';
+                tmp += str.substr(6);
+                return tmp;
+            }else{
+                tmp += str.substr(0, 3);
+                tmp += '-';
+                tmp += str.substr(3, 4);
+                tmp += '-';
+                tmp += str.substr(7);
+                return tmp;
+            }
+            return str;
+        }
+
+var cellPhone = document.getElementById('cellPhone');
+cellPhone.onkeyup = function(event){
+        event = event || window.event;
+        var _val = this.value.trim();
+        this.value = autoHypenPhone(_val) ;
+}
+
+</script>
+
+
+
+
+
+</html>

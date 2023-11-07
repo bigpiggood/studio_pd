@@ -1,0 +1,268 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith%}
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/registerst.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+
+
+<style>
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+    
+.filebox{
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #999999;
+}
+
+.btn_custom{
+    width: 100%;
+    height: 50px;
+    border-radius: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding: 0px 50px;
+    outline: none;
+}
+
+
+/* input file type */
+.input-file {
+  display: inline-block;
+  width: 100%;
+}
+
+.input-file [type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0 none;
+}
+.input-file .file-label {
+  display: inline-block;
+  min-width: 53px;
+  height: 27px;
+  line-height: 24px;
+  padding: 0 10px;
+  border-radius: 2px;
+  font-size: 13px;
+  background-color: #9468C1;
+  color: #fff;
+  text-align: center;
+  margin-left: 10px;
+}
+.input-file .file-name {
+  width: 70%;
+  background: #f5f5f5;
+  height: 27px;
+  line-height: 26px;
+  text-indent: 5px;
+  border: 1px solid #bbb;
+}
+
+
+
+</style>
+
+
+
+<body>
+    <form action="/test_studio" method="post" enctype="multipart/form-data" onsubmit="alert_test()">
+        <div class="wrap" style="height: auto; margin-top: 2%; margin-bottom: 2%;">
+            <div class="login">
+                <h2>스튜디오 등록</h2>
+                <p style="font-size: 12px; color: rgb(159, 159, 159);" class="login_id">ㅊ 등록 후 관리자 승인 후에 노출됩니다.</p>
+
+                <div class="login_id">
+                    <h4>스튜디오명</h4>
+                    <input type="text" name="studio_name" id="" placeholder="스튜디오명" required>
+                </div>
+                <div class="login_id">
+                    <h4>주소</h4>
+                    <input type="text" name="studio_addr" id="address_kakao" value="" placeholder="클릭 후 주소를 검색해주세요" readonly required>
+                    <input type="text" name="studio_addr_detail" placeholder="상세 주소를 입력해주세요">
+                </div>
+
+                <div class="login_id">
+                  <h4>위치 표시 (선택 / 필수아님)</h4>
+                  <input type="text" name="studio_loc" id="" value="" 
+                  placeholder="(예) https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3159" maxlength="500">
+                  <a href="https://www.google.co.kr/maps/?hl=ko&entry=ttu" target="_blank" style="font-size: 10px;">구글맵 검색하러 가기 〉</a>
+              </div>
+                                
+
+                <div class="login_id_ex">
+                        <h4>유형</h4>
+                        <div class="filebox">
+                            <div><label><input type="checkbox" name="check_box" value="대형 스튜디오"> 대형 스튜디오</label></div>
+                            <div><label><input type="checkbox" name="check_box"  value="호리존"> 호리존</label></div>
+                            <div><label><input type="checkbox" name="check_box"  value="LED 버추얼 스튜디오"> LED 버추얼 스튜디오</label></div>
+                            <div><label><input type="checkbox" name="check_box"  value="크로마키"> 크로마키</label></div>
+                        </div>
+                </div>                  
+
+
+                <div class="login_id">
+                  <h4>가격</h4>
+                  <input type="number" name="studio_price"  id="" placeholder="숫자로만 입력해주세요" required>
+              </div>
+                <div class="btn_custom">
+                  <h4 style="margin-bottom: 10px;">사진첨부(3장 필요)</h4>
+                  <!-- <input type="file" name="file_1" id="" accept="image/*" required>
+                  <input type="file" name="file_2" id="" accept="image/*" required>
+                  <input type="file" name="file_3" id="" accept="image/*" required> -->
+
+
+                  <div class="input-file">
+                    <input type="text" readonly="readonly" class="file-name">
+                    <label for="upload01" class="file-label" style="cursor: pointer;">파일 업로드</label>
+                    <input type="file" name="file_1" id="upload01" class="file-upload" accept="image/*" required>
+                  </div>
+                  <br /><br />
+                  <div class="input-file">
+                    <input type="text" readonly="readonly" class="file-name" />
+                    <label for="upload02" class="file-label" style="cursor: pointer;">파일 업로드</label>
+                    <input type="file" name="file_2" id="upload02" class="file-upload" accept="image/*" required>
+                  </div>
+                  <br /><br />
+                  <div class="input-file">
+                    <input type="text" readonly="readonly" class="file-name" />
+                    <label for="upload03" class="file-label" style="cursor: pointer;">파일 업로드</label>
+                    <input type="file" name="file_3" id="upload03" class="file-upload" accept="image/*" required>
+                  </div>            
+
+              </div>
+
+                <div class="submit">
+                    <button type="submit">등록</button>
+                </div>
+                <div class="login_etc">
+                <div></div>  
+                    <div class="forgot_pw">
+                    <a href="/">홈으로</a>
+                  </div>
+
+            </div>
+        </div>
+    </form>
+</body>
+
+<!-- 다음 지도API 사용 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+window.onload = function(){
+    document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("address_kakao").value = data.address; // 주소 넣기
+                document.querySelector("input[name=studio_addr_detail]").focus(); //상세입력 포커싱
+            }
+        }).open();
+    });
+}
+
+</script>
+
+
+
+<script>
+    function alert_test(){
+        alert("등록완료! 관리자 검토 후 등록이완료됩니다.");
+}
+</script>
+
+
+<script>
+    (function($){
+  
+  var $fileBox = null;
+  
+  $(function() {
+    init();
+  })
+  
+  function init() {
+    $fileBox = $('.input-file');
+    fileLoad();
+  }
+  
+  function fileLoad() {
+    $.each($fileBox, function(idx){
+      var $this = $fileBox.eq(idx),
+          $btnUpload = $this.find('[type="file"]'),
+          $label = $this.find('.file-label');
+      
+      $btnUpload.on('change', function() {
+        var $target = $(this),
+            fileName = $target.val(),
+            $fileText = $target.siblings('.file-name');
+        $fileText.val(fileName);
+      })
+      
+      $btnUpload.on('focusin focusout', function(e) {
+        e.type == 'focusin' ?
+          $label.addClass('file-focus') : $label.removeClass('file-focus');
+      })
+      
+    })
+  }
+  
+})(jQuery);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,767 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+
+  <title>reservation</title>
+  <link rel="stylesheet" href="/static/css/reset.css">
+  <link rel="stylesheet" href="/static/css/indexcss.css">
+  <link rel="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+  
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+    integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css'/>
+
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css">
+    -->
+    <link rel="stylesheet" href="/static/css/card_slide.css"> 
+  
+    
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+    <!-- Bootstrap JS -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+
+
+  </head>
+  
+  <style>
+    .inner-star::before{color: #FF9600;}
+    .outer-star {position: relative;display: inline-block;color: #CCCCCC;}
+    .inner-star {position: absolute;left: 0;top: 0;width: 0%;overflow: hidden;white-space: nowrap;}
+    .outer-star::before, .inner-star::before {content: '\f005 \f005 \f005 \f005 \f005';font-family: 'Font Awesome 5 free';font-weight: 900;}
+
+    a:hover{
+    color: #ffffff;
+  }
+
+
+body{
+	/* margin-top: 100px; */
+	font-family: 'Trebuchet MS', serif;
+	line-height: 1.6
+}
+.container{
+	width: 100%;
+}
+
+
+
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{ 
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	color: #222;
+}
+
+
+.tab-content{
+  background-color: #efefef;
+  border-radius: 20px;
+	display: none;
+	padding: 15px;
+  height: 520px;
+}
+
+.tab-content.current{
+	display: inherit;
+}
+
+
+
+#index_wrap ul {
+  display: block; 
+  margin-bottom: 30px;
+}
+
+
+#index_wrap ul li {
+  position: relative; display: inline-block; 
+  margin: 0 15px; 
+  height: 40px; 
+  text-align: center; 
+  line-height: 30px; 
+  cursor: pointer;
+}
+
+
+/* #index_wrap ul p {
+  font-size: 1.1rem; 
+  font-weight:800;
+}
+
+#index_wrap ul li a {
+  color: #000;
+} */
+
+
+/* 언더라인 효과 설정 */
+#fromInsideOut li::after {
+  position: absolute; 
+  content:""; 
+  display: block; 
+  border-bottom: 3px solid #9468C1; 
+  transition: all 400ms ease-out; 
+  left: 40%; 
+  width: 0;
+}
+
+#fromInsideOut li:hover::after {
+  transition: all 400ms ease-out; 
+  left: 10%; 
+  width: 80%;
+}
+
+.font_siz{
+  font-size: 14px;
+  color: rgb(101, 101, 101);
+}
+
+
+
+.tab-content_scroll {
+    padding: 30px;
+    /* overflow: auto; */
+    overflow-y: scroll; /* 세로 스크롤을 표시합니다. */
+    scroll-behavior: smooth; /* 스크롤을 부드럽게 만듭니다. */
+  }
+
+
+  .tab-content_scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  .tab-content_scroll::-webkit-scrollbar-thumb {
+    background-color: #9468C1;
+    border-radius: 10px;
+  }
+  .tab-content_scroll::-webkit-scrollbar-track {
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+
+
+
+
+
+  </style>
+  
+  
+  
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="header_wrap">
+          <h1 class="header_logo"><a href="/"><img src="/static/images/biglogojyahn.png" alt="로고"></a></h1>
+          <nav>
+            <!-- <button class="btn-close" onclick="document.querySelector('nav').style.display='none'">Χ</button> -->
+            <ul class="gnb">
+              <li><a>이용안내</a>
+                <ul class="second-depth">
+                  <li><a href="#">예약안내</a></li>
+                  <li><a href="#">결제안내</a></li>
+                </ul>
+              </li>
+              <li><a href="/sub">검색</a>
+                <ul class="second-depth">
+                  <li><a href="/sub">상세검색</a></li>
+                  <li><a href="/sub">지역검색</a></li>
+                  <li><a href="/sub">유형검색</a></li>
+                </ul>
+              </li>
+              <li><a href="#">이용후기</a></li>
+              <li><a href="/lists">고객센터</a></li>
+            </ul>
+          </nav>
+          <div class="utilmenu">
+            {% if session['is_loged_in'] %}
+            <a href="/info"><span class="username">{{session['username']}}님</span></a>
+            {% else %}
+            <span class="username">guest</span>
+            {% endif %} 
+            {% if session['is_loged_in'] %}
+            <a href="/logout"><img src="/static/images/logout.png" alt="마이메뉴"></a>
+            {% else %}
+            <a href="/loginst"><img src="/static/images/profile.png" alt="마이메뉴"></a>
+            {% endif %}
+            <a href="#" id="toggle_btn"><img src="/static/images/menu.png" alt="메뉴"></a>
+          </div>
+        </div>
+      </header>
+  
+      <div class='whole_wrap'>
+        <main class="container" style="width: 1052px;">
+          <div class="row" style="display: flex;">
+            <section class="col-md-6 col-sm-12 section " style="width: 55%;">
+              <div class="container">
+                <div class="row align-items-stretch retro-layout">
+                  <div class="row" style="margin: 0 auto;">
+                    <div class="hidecard{{ data['studio_id'] }}">
+                      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner" style="height: 270px;">
+                          <div class="carousel-item active" data-bs-interval="2000">
+                            <img src="{{ data['image'][0] }}" id="img{{ data['studio_id'] }}a" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item" data-bs-interval="2000" style="height:300px;">
+                            <img src="{{ data['image'][1] }}" id="img{{ data['studio_id'] }}b" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item" data-bs-interval="2000" style="height:300px;">
+                            <img src="{{ data['image'][2] }}" id="img{{ data['studio_id'] }}c" class="d-block w-100" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div style="width: 45%; padding: 20px; ">
+              <div>
+                <h1>{{ data['스튜디오이름'] }}</h1>
+  
+  
+                  <!--별점 표시  -->
+                <div class='RatingStar'>
+                  <div class='RatingScore'>
+                    <div class='outer-star'><div class='inner-star'></div></div>
+                  </div>
+                </div>
+  
+                <!-- 리뷰 점수 표시-->
+                <h6>({{ data3 }})</h6>
+  
+  
+                <!-- <h4>{{ data['유형'] }}</h4> -->
+                <p>{{ data['주소(지역)'] }}</p>
+                <span>대여 (1일 기준) : </span><b><p style="color: rgb(0, 145, 255);">{{ '{:,}'.format(data['가격']) }}원</p></b>
+              </div>
+  
+              
+              <form action="/detail/{{ data['studio_id'] }}" method="POST" onsubmit="return requestPay()" name="detail_form">
+                <input type="hidden" name="ids" value="{{ data['studio_id'] }}">
+                <input type="hidden" name="name" value="{{ data['스튜디오이름'] }}">
+                <input type="text" readonly required id="datepicker" name="reservation" placeholder="예약일자"  min="today()" autocomplete="off">
+                <!-- <input type="submit" value="예약하기"> -->
+
+
+
+                    {% block body %}
+
+                        <!--<a href="/loginst" class="on"><button type="submit">예약하기</button></a>-->
+
+                        {% if session['is_loged_in'] %}
+
+                            {% if session['phone'] == 'kakao' %}
+
+                                <!--<a href="#" class="on"><button type="submit">Okay</button></a>-->
+                                <a href="/change_email" class="on">예약하기</a>
+
+                            {% else%}
+
+                            <a href="#" class="on"><button type="button" onclick="return cancel()" id="cancel">예약하기</button></a>
+                                <input type="submit" hidden>
+                                <!--<a href="/change_email" class="on">email 변경</a>-->
+
+
+                            {% endif %}
+
+                        {% else %}
+
+                            <a href="/loginst" class="on"><button type="submit">예약하기</button></a>
+
+
+                        {% endif %}
+
+                    {% endblock %}
+            </form>
+          </div>
+        </div>
+        <hr style="background-color: rgb(52, 52, 52); height: 1px; border: 0;">
+        <br><br>
+
+        <!-- <div class="accordion" id="accordionExample">
+          <div class="accordion-item" style="border: none; margin-left: 3.5%;">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
+                aria-expanded="true" aria-controls="collapseOne" style="background-color: #ececec; width: 30%; color: #7a40b5;">
+                사장님 한마디 &nbsp;
+                <span style="margin-bottom: 5px;">
+                  <img src="/static/images/notice_icon.png" alt="" style="width: 20px;">
+                </span>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <div class="accordion-body" style="border: none;">
+                <p style="color: #6e6e6e;">하이루! 호이호이호호호호이</p>
+              </div>
+            </div>
+          </div>
+        </div>         -->
+        <div class="accordion" id="accordionFlushExample">
+          <div class="accordion-item" style="border: none; margin-left: 2.5%;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="background-color: #ececec; width: 30%; color: #7a40b5;">
+              스튜디오 공지 &nbsp;
+              <span style="margin-bottom: 5px;">
+                <img src="/static/images/notice_icon.png" alt="" style="width: 20px;">
+              </span>
+            </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <p style="color: #6e6e6e; margin:2%">
+                하이루! 호이호이호호호호이
+              </p>
+            </div>
+          </div>          
+        </div>
+        <br><br>
+
+        <div class="slider">
+          <input type="radio" name="slide" id="slide1" checked>
+          <input type="radio" name="slide" id="slide2">
+          <input type="radio" name="slide" id="slide3">
+          <input type="radio" name="slide" id="slide4">
+          <ul id="imgholder" class="imgs">
+              <li><img src="/static/images/gwangju/bib_inside2.PNG"></li>
+              <li><img src="/static/images/gwangju/bib_inside1.PNG"></li>
+              <li><img src="/static/images/gwangju/hwaidam_inside2.PNG"></li>
+              <li><img src="/static/images/gwangju/kimleepark_outside.PNG"></li>
+          </ul>
+          <div class="bullets">
+              <label for="slide1">&nbsp;</label>
+              <label for="slide2">&nbsp;</label>
+              <label for="slide3">&nbsp;</label>
+              <label for="slide4">&nbsp;</label>
+          </div>
+      </div>
+       
+        <br><br><br><br><br>
+
+
+        <div class="container">
+
+          <div id="index_wrap">
+            <ul class="tabs" id="fromInsideOut">
+              <li class="tab-link current" data-tab="tab-1">예약 안내</li>
+              <li class="tab-link" data-tab="tab-2">환불 규정</li>
+              <li class="tab-link" data-tab="tab-3">이용 후기 ({{ data4|length }}건)</li>
+              <li class="tab-link" data-tab="tab-4">스튜디오 위치</li>
+            </ul>
+          </div>
+        
+          <div id="tab-1" class="tab-content current">
+            <div class="reservation">
+              <h5 style="text-decoration-line: underline; text-decoration-color: #434343;">예약 시 주의사항</h5>
+              <br>
+              <ul  style="padding-left: 0;">
+                <li class="font_siz">1. 촬영 준비 및 세팅, 장비 철수 및 장소 원상복구 시간은 계약 시간에 포함 되어있습니다.</li>
+                <li class="font_siz">(시간 초과 시 30분 기준 추가 요금이 부가됩니다.)</li>
+                <li class="font_siz">2. 이동형 가벽은 '꼭' 두 명 이상이 옮겨야 안전 합니다.</li>
+                <li class="font_siz">3. 기동형 가벽 사용 시 천장형 에어컨을 피해서 옮겨 주세요.</li>
+                <li class="font_siz">4. 커텐 사용시 가급적 사다리를 이용해 주세요.</li>
+                <li class="font_siz">5. 촬영 후 사용하신 장비 등은 제자리에 놓아 주세요.</li>
+                <li class="font_siz">6. 촬영 하시면서 발생한 쓰레기를 다음 분을 위해 정리정돈 해주세요.</li>
+                <li class="font_siz">7. 공간에서의 취식은 금지 되어 있습니다.</li>
+              </ul>
+            </div>          
+          </div>  
+
+
+          <div id="tab-2" class="tab-content">
+            <div class="refund">
+              <h5 style="padding-top: 4%; text-decoration-line: underline; text-decoration-color: #434343;">환불규정 안내</h5>
+              <br>
+              <p style="padding-bottom: 20px;">
+                <em style="color: rgb(255, 58, 72);">이용당일(첫 날) 이후에 환불 관련 사항은 호스트에게
+                  직접 문의하셔야 합니다.</em>
+                결제 후 2시간 이내에는 100% 환불이 가능합니다.(단, 이용시간 전까지만 가능)
+              </p>
+              <ul style="padding-left: 0;">
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 8일 전
+                  </strong> <span data-v-73604231="" class="data" style="color: rgb(0, 0, 0);">총 금액의 100% 환불</span> <!----></li>
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 7일 전
+                  </strong> <span style="color: rgb(0, 0, 0);">총 금액의 90% 환불</span> <!----></li>
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 6일 전
+                  </strong> <span style="color: rgb(0, 0, 0);">총 금액의 80% 환불</span> <!----></li>
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 5일 전
+                  </strong> <!----> <span style="color: rgb(0, 0, 0);">환불 불가</span></li>
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 4일 전
+                  </strong> <!----> <span style="color: rgb(0, 0, 0);">환불 불가</span></li>
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 3일 전
+                  </strong> <!----> <span style="color: rgb(0, 0, 0);">환불 불가</span></li>
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 2일 전
+                  </strong> <!----> <span style="color: rgb(0, 0, 0);">환불 불가</span></li>
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 전날
+                  </strong> <!----> <span style="color: rgb(0, 0, 0);">환불 불가</span></li>
+                <li class="font_siz"><strong style="color: rgb(101, 101, 101);">
+                    이용 당일
+                  </strong> <!----> <span style="color: rgb(0, 0, 0);">환불 불가</span></li>
+              </ul>
+            </div>          
+          </div>
+
+
+
+          <div id="tab-3" class="tab-content tab-content_scroll">
+            <!-- <h5>이미 이용했던 분들의 <span style="text-decoration: underline; 
+            text-decoration-style: dotted; text-decoration-color: #9468C1;">리뷰
+            </span>를 확인해 보세요<em>!</em>
+            </h5> -->
+
+            <!-- <hr style="background-color: rgb(52, 52, 52); height: 1px; border: 0;"> -->
+
+            <div class="reviews">
+                {% for x in data4 %}
+                <div class="review">
+                  <img src="/static/images/user_icon.png" alt="" style="width: 25px;">&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span style="font-size: 18px; color: #1d1d1d;">{{ x['user_id'][0:3] }}***</span>
+                     
+
+                  <!-- 리뷰 별점 표시 -->
+                  <div class='RatingStar' id="star{{ loop.index-1 }}">
+                    <div class='RatingScore'>
+                        <div class='outer-star'>
+                          <div class='inner-star' id="inner-star{{ loop.index-1 }}"></div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <!-- 리뷰 내용 표시 -->
+                  <p style="color: rgb(98, 98, 98); margin-top: 20px;">{{ x['review'] }}</p>
+
+                    <!-- 리뷰 사진 표시 -->
+                    <div class="review-image">
+                        <img src="{{ x['reivew_image'] }}"alt="...">
+                    </div>
+                    <div class="review-details">
+
+                        
+
+                    </div>
+                </div>
+                <hr style="background-color: rgb(52, 52, 52); height: 1px; border: 0;">
+                {% endfor %}
+            </div>
+        </div>
+        
+        
+        
+
+           
+            
+        <div id="tab-4" class="tab-content">
+          <div style="margin-bottom: 50px;">
+            <iframe src="{{ data['지도'] }}" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </main>
+    </div>
+
+<br><br>
+
+    <footer>
+      <div class="footerwrap">
+        <div class="footer_logo"><img src="/static/images/biglogojyahn.png" alt="로고"></div>
+        <div class="footer_text">
+          <span>서울시 노원구 동일로 1351 2층(상계동) / 대표자: 안지영 / 사업자번호:210-91-08887</span>
+          <span>Tel:02-952-1163 / Fax:02-952-7116 / 대표 E-mail:webmaster@studiopd.co.kr</span>
+          <span>Copyright ⓒ studiopd.corp.All Rights Reserved.</span>
+        </div>
+        <div class="circle">
+          <img src="/static/images/twitter.png" alt="트위터">
+          <img src="/static/images/instagram.png" alt="인스타">
+          <img src="/static/images/facebook.png" alt="페이스북">
+        </div>
+      </div>
+    </footer>
+
+  </body>
+
+<script>
+
+// 결제 시 스튜디오 정보(스튜디오명, 가격 등)를 결제창에 보여주기 위하여 data를 가져옴
+var studio_res = {{ data | safe }};
+      console.log(studio_res)
+
+var detail_form = document.detail_form;
+
+$(document).ready(function cancel() {
+  $('#cancel').click(function() {
+      if (!$('#datepicker').val()) {
+          alert('예약일자를 선택해주세요!');
+          event.preventDefault();
+          $(selector).off('click');
+          return false;
+      } 
+      else{
+        requestPay()
+      }
+  })
+});
+
+
+
+
+    // 포트원(PG사와 사업자간 결제를 도와주는 업체의 서비스)
+    // 사업자 ↔ 포트원 ↔ PG사 (Payment_Gateway)
+    var IMP = window.IMP; // 생략가능
+        IMP.init('imp85545433'); // <-- 본인 가맹점 식별코드 삽입
+          // 가맹점 코드를 PK(기본키)로 결제 금액등의 정보를 처리 
+
+          function requestPay() {
+            IMP.init('imp85545433'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+            IMP.request_pay({
+              pg: "kakao",
+              pay_method: "kakao_pay",
+              merchant_uid : 'merchant_'+ new Date().getTime(),
+              name : studio_res['스튜디오이름'] + " (결제 테스트)",
+              amount : studio_res['가격'],
+              // buyer_email : 'iamport@siot.do',
+              buyer_name : '구매자',
+              // buyer_tel : '010-1234-5678',
+              // buyer_addr : '서울특별시 강남구 삼성동',
+              // buyer_postcode : '123-456'
+            }, function (rsp) { // callback
+                if (rsp.success) {
+                  // 결제 성공 시 알림창 띄우고, submit실행
+                  alert('결제 성공')
+                  console.log(true)
+                  detail_form.submit();
+                  return true;
+                } else {
+                  // 결제 실패 시 알림창 띄우고 submit실행x
+                  alert('결제 실패')
+                  console.log(false)
+                  return false;
+                }
+            });
+          }
+</script>
+   
+
+
+<script>
+// 제이쿼리 데이트피커 활용 달력기능 구현
+  var studio_data = {{ data2 | safe }};
+
+    jQuery(function($){
+
+          /*
+          //config 값을 json형식으로 만든후 setDefaults로 설정할수도 있음.
+
+          $.datepicker.regional['ko'] = {closeText: '닫기',dayNamesShort: ['일','월','화','수','목','금','토']};
+          $.datepicker.setDefaults($.datepicker.regional['ko']);
+          */
+
+          $("#datepicker").datepicker({
+              // changeMonth:true,
+              // changeYear:true,
+              yearRange:"2023:2024",
+              showOn:"both",
+              buttonImage:"/static/images/calendar.png",
+              buttonImageOnly:true,
+              dateFormat: 'yy-mm-dd',
+              showOtherMonths: true,
+              selectOtherMonths: true,
+              showMonthAfterYear: true,
+              minDate: 0,
+              dayNamesMin: ['일','월', '화', '수', '목', '금', '토'],
+              monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+              monthNames: ['년 1월','년 2월','년 3월','년 4월','년 5월','년 6월','년 7월','년 8월','년 9월','년 10월','년 11월','년 12월'],
+              nextText: '다음 달',
+              prevText: '이전 달',
+              beforeShowDay: disableAllTheseDays
+          });
+
+      });
+
+      // 특정날짜들 배열
+      var disabledDays = studio_data;
+
+      // 주말(토, 일요일) 선택 막기
+      function noWeekendsOrHolidays(date) {
+          var noWeekend = jQuery.datepicker.noWeekends(date);
+          return noWeekend[0] ? [true] : noWeekend;
+      }
+
+      // 일요일만 선택 막기
+      function noSundays(date) {
+        return [date.getDay() != 0, ''];
+      }
+
+      // 이전 날짜들은 선택막기
+      function noBefore(date){
+          if (date < new Date()){
+              return [false];}
+          return [true];
+      }
+
+      // 특정일 선택막기
+      function disableAllTheseDays(date) {
+        var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+        console.log(m);
+        for (i = 0; i < disabledDays.length; i++) {
+            if($.inArray(y + '-' +(m+1) + '-' + d,disabledDays) != -1) {
+                return [false];
+            }
+        }
+        return [true];
+    }
+</script>
+
+
+
+<!-- 본문 별점 표시 기능 -->
+<script>/*<![CDATA[*/ 
+
+  var star =  {{ data3 | safe }};
+  
+  ratings = {RatingScore: star}
+  // console.log(ratings)
+  totalRating = 5;
+  table = document.querySelector('.RatingStar');
+  function rateIt() {
+    for (rating in ratings) {
+      ratingPercentage = ratings[rating] / totalRating * 100;
+      ratingRounded = Math.round(ratingPercentage / 10) * 10 + '%';
+      star = table.querySelector(`.${rating} .inner-star`);
+      // numberRating = table.querySelector(`.${rating} .numberRating`);
+      star.style.width = ratingRounded;
+      // numberRating.innerText = ratings[rating];
+    }
+  }
+  rateIt()
+  /*]]>*/
+
+
+
+  // 리뷰 별점 표시 기능 
+  /*<![CDATA[*/ 
+
+  var star_2 = {{ data4 | safe }};
+
+  
+    for(let i=0; i < star_2.length; i++){
+  
+      let star = 'star' + i
+      console.log(star_2[i]['reviewStar'])
+      let RatingScore_i = 'RatingScore_' + i 
+      // let RatingStar_i = '.RatingStar_' + i 
+      // console.log(RatingScore_i)
+      // console.log(RatingStar_i)
+      let a = RatingScore_i
+      // let b = RatingStar_i
+      console.log(star)
+      console.log(a)
+
+      ratings = `{${a}: ${star_2[i]['reviewStar']}}`
+
+      console.log(ratings)
+      totalRating = 5;
+      table = document.querySelector('#'+ star);
+      console.log(table)
+
+      function rateIt() {
+        for (rating in ratings) {
+          ratingPercentage = ratings[rating] / totalRating * 100;
+          ratingRounded = Math.round(ratingPercentage / 10) * 10 + '%';
+          star = table.querySelector(`#inner-star${i}`);
+          console.log(star)
+          // star = table.querySelector(`.${rating} .inner-star`);
+
+          // numberRating = table.querySelector(`.${rating} .numberRating`);
+          star.style.width = ratingRounded;
+          // numberRating.innerText = ratings[rating];
+        }
+      }
+      rateIt()
+    /*]]>*/
+  }
+</script>
+
+
+
+<script>
+  $(document).ready(function(){
+	
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+
+})
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    // 클릭 이벤트를 통해 스크롤 이동
+    $(".reviews").on("click", ".review", function() {
+      // 해당 리뷰의 위치로 스크롤 이동
+      var target = $(this).offset().top;
+      $("html, body").animate({ scrollTop: target }, 3000); // 1000ms 동안 스크롤
+    });
+  });
+  </script>
+
+
+</html>

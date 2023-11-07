@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>studio pd main</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/indexcss.css">
+    <link rel="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+          <div class="header_wrap">
+            <h1 class="header_logo"><a href="/"><img src="/static/images/biglogojyahn.png" alt="로고"></a></h1>
+            <nav>
+              <!-- <button class="btn-close" onclick="document.querySelector('nav').style.display='none'">Χ</button> -->
+              <ul class="gnb">
+                <li><a>이용안내</a>
+                  <ul class="second-depth" id="aaa">
+                    <li><a href="#">예약안내</a></li>
+                    <li><a href="#">결제안내</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">검색</a>
+                  <ul class="second-depth" >
+                    <li><a href="/sub">상세검색</a></li>
+                    <li><a href="/sub">지역검색</a></li>
+                    <li><a href="/sub">유형검색</a></li>
+                  </ul>
+                </li>
+                <li><a href="/change_email">이용후기</a></li>
+                <li><a href="/lists">고객센터</a></li>
+              </ul>
+            </nav>
+            <div class="utilmenu">
+              {% if session['is_loged_in'] %}
+              <a href='/info'><span class="username">{{session['username']}}님</span></a>
+              {% else %}
+              <span class="username">guest</span>
+              {% endif %}
+              {% if session['is_loged_in'] %}
+              <a href="/logout"><img src="/static/images/logout.png" alt="마이메뉴"></a>
+              {% else %}
+              <a href="/loginst"><img src="/static/images/profile.png" alt="마이메뉴"></a>
+              {% endif %}
+              <a href="#" id="toggle_btn"><img src="/static/images/menu.png" alt="메뉴"></a>
+            </div>
+          </div>
+        </header>
+        <aside>
+          <ul class="toggle_menu">
+            <li><a href="#">이용안내</a>
+              <ul class="second-menu">
+                <li><a href="#">예약안내</a></li>
+                <li><a href="#">결제안내</a></li>
+              </ul>
+            </li>
+            <li><a href="#">검색</a>
+              <ul class="second-menu" >
+                <li><a href="/sub">상세검색</a></li>
+                <li><a href="/sub">지역검색</a></li>
+                <li><a href="/sub">유형검색</a></li>
+              </ul>
+            </li>
+            <li><a href="#">이용후기</a></li>
+            <li><a href="/lists">고객센터</a></li>
+            <li><a href="#">마이 페이지</a></li>
+          </ul>
+        </aside>
+        <main>
+          <section class="section1">
+            <div class="visual">
+              <!-- <img src="/static/images/visual.png" alt="메인이미지"> -->
+            </div>
+            <div class="search">
+              <!-- <input type="text"  placeholder="검색"> -->
+              <div class="search_div">
+                <div class="search_img"><img src="/static/images/map.png"></div>
+                <div class="areasr">
+                <a href="#"><button class='btn_area'><span>지역</span></button></a>
+                <div class="area_container" style=display:none;>
+                <label class="label1"><select name="sido1" id="sido1" class='areasy'></select></label>
+                <label class="label2"><select name="gugun1" id="gugun1" class='areasy areasy2'></select></label>
+                <!-- <div class="btn_succes2" style="cursor: pointer;"><p>완료</p></div> -->
+                </div>
+                </div>
+              </div>
+              <div class="search_div">
+                <div class="search_img"><img src="/static/images/types.png"></div>
+                <div class='selectr'>
+                <a href="#"><button class="btn_select"><span>유형</span></button></a>
+                <div class="select_container" style=display:none;>
+                <label class="label1"><select id="selectEl" class="select1">
+                	<option value="1">전체</option>
+                	<option value="2">대형스튜디오</option>
+                	<option value="3">호리존</option>
+                	<option value="4">크로마키</option>
+                	<option value="5">버추얼스튜디오</option>
+                </select></label>
+                <!-- <div class="btn_succes3" style="cursor: pointer;"><p>완료</p></div> -->
+                </div>
+              </div>
+              </div>
+              <div class="search_div">
+                <div class="search_img"><img src="/static/images/calendar.png"></div>
+                <div class="calendarr">
+                  <a href="#"><button class="btn_data" style="border: none;"><span>날짜</span></button></a>
+                  <div class="calendar_container" style=display:none;>
+                    <table class="Calendar">
+                        <thead>
+                            <tr>
+                                <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
+                                <td colspan="5">
+                                    <span id="calYear"></span>년
+                                    <span id="calMonth"></span>월
+                                </td>
+                                <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
+                            </tr>
+                            <tr>
+                                <td>일</td>
+                                <td>월</td>
+                                <td>화</td>
+                                <td>수</td>
+                                <td>목</td>
+                                <td>금</td>
+                                <td>토</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                  <!-- <div class="btn_succes" style="cursor: pointer;"><p>완료</p></div> -->
+              </div>
+              </div>
+              <button class="btn-search"><a href="/sub"><span>검색</span></a></button>
+              </div>
+            </div>
+          </section>
+          <section class="section2">
+            <div class="section2wrap">
+              <figure>
+                  <a href="/sub">
+                  <div><img src="/static/images/oneoffour.png" alt="대형스튜디오"></div>
+                  <figcaption>대형 스튜디오</figcaption>
+                </a>
+                </figure>
+                <figure>
+                  <a href="/sub">
+                  <div><img src="/static/images/twooffour.png" alt="호리존"></div>
+                  <figcaption>호리존</figcaption>
+                </a>
+                </figure>
+                <figure>
+                  <a href="/sub">
+                  <div><img src="/static/images/threeoffour.png" alt="크로마키"></div>
+                  <figcaption>크로마키</figcaption>
+                </a>
+                </figure>
+                <figure>
+                  <a href="/sub">
+                  <div><img src="/static/images/fouroffour.png" alt="버추얼스튜디오"></div>
+                  <figcaption>LED 버추얼 스튜디오</figcaption>
+                </a>
+                </figure>
+            </div>
+          </section>
+          <section class="section3">
+              <div class="section3wrap">
+                <div class="black_caption">
+
+                  <span class="title1">턴 스튜디오</span>
+                  <div class="title2">
+                    <span>자동차 전용</span>
+                    <span>턴테이블 스튜디오</span>
+                  </div>
+                  <span class="title3">경기도 파주시 신촌동 109-18</span>
+                  <span class="title4">+ VIEW MORE</span>
+                </div>
+                <div class="turntable"><img src="/static/images/turntable.png" alt="턴스튜디오"></div>
+              </div>
+          </section>
+          <section class="section4">
+            <div class="section4wrap">
+              <div class="two_column">
+                <img src="/static/images/oneoftwo.png" alt="버추얼 스튜디오">
+                <div class="column_text">
+                  <span>+ VIEW MORE</span>
+                  <span>1일(12시간) 250만원</span>
+                </div>
+              </div>
+              <div class="two_column">
+                <img src="/static/images/twooftwo.png" alt="크로마키스튜디오">
+                <div class="column_text">
+                  <span>+ VIEW MORE</span>
+                  <span>1일(12시간) 80만원</span>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="section5">
+            <div class="section5wrap">
+              <div class="app_text">
+                <span>스튜디오 예약에 필요한 모든것</span>
+                <span>스튜디오피디 APP에서 만나보세요!</span>
+              </div>
+              <div>
+                <img src="/static/images/smartphone.png" alt="스마트폰앱화면">
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    <footer>
+      <div class="footerwrap">
+        <div class="footer_logo"><img src="/static/images/biglogojyahn.png" alt="로고"></div>
+        <div class="footer_text">
+          <span>서울시 노원구 동일로 1351 2층(상계동)  /  대표자: 안지영  /  사업자번호:210-91-08887</span>
+          <span>Tel:02-952-1163  /  Fax:02-952-7116  /  대표 E-mail:webmaster@studiopd.co.kr</span>
+          <span>Copyright ⓒ studiopd.corp.All Rights Reserved.</span>
+        </div>
+        <div class="circle">
+          <img src="/static/images/twitter.png" alt="트위터">
+          <img src="/static/images/instagram.png" alt="인스타">
+          <img src="/static/images/facebook.png" alt="페이스북">
+        </div>
+      </div>
+    </footer>
+    </div>
+    <script>
+
+      var burger = document.getElementById('toggle_btn');
+      var menu = document.querySelector('.toggle_menu');
+
+      function burgerClick(){
+        if(menu.style.display == 'block'){
+            menu.style.display = 'none'
+          }
+          else{menu.style.display = "block";}
+      }
+
+      burger.addEventListener('click', burgerClick);
+
+    let btn_data = document.getElementsByClassName("btn_data")
+    btn_data.onclick = function () { buildCalendar(); }    // 웹 페이지가 로드되면 buildCalendar 실행
+
+    let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
+    let today = new Date();     // 페이지를 로드한 날짜를 저장
+    today.setHours(0, 0, 0, 0);    // 비교 편의를 위해 today의 시간을 초기화
+
+      // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
+      function buildCalendar() {
+
+          let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1);     // 이번달 1일
+          let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0);  // 이번달 마지막날
+
+          let tbody_Calendar = document.querySelector(".Calendar > tbody");
+          document.getElementById("calYear").innerText = nowMonth.getFullYear();             // 연도 숫자 갱신
+          document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1);  // 월 숫자 갱신
+
+          while (tbody_Calendar.rows.length > 0) {                        // 이전 출력결과가 남아있는 경우 초기화
+              tbody_Calendar.deleteRow(tbody_Calendar.rows.length - 1);
+          }
+
+          let nowRow = tbody_Calendar.insertRow();        // 첫번째 행 추가
+
+          for (let j = 0; j < firstDate.getDay(); j++) {  // 이번달 1일의 요일만큼
+              let nowColumn = nowRow.insertCell();        // 열 추가
+          }
+
+          for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {   // day는 날짜를 저장하는 변수, 이번달 마지막날까지 증가시키며 반복
+
+              let nowColumn = nowRow.insertCell();        // 새 열을 추가하고
+
+
+              let newDIV = document.createElement("p");
+              newDIV.innerHTML = leftPad(nowDay.getDate());        // 추가한 열에 날짜 입력
+              nowColumn.appendChild(newDIV);
+
+              if (nowDay.getDay() == 6) {                 // 토요일인 경우
+                  nowRow = tbody_Calendar.insertRow();    // 새로운 행 추가
+              }
+
+              if (nowDay < today) {                       // 지난날인 경우
+                  newDIV.className = "pastDay";
+              }
+              else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우
+                  newDIV.className = "today";
+                  newDIV.onclick = function () { choiceDate(this); }
+              }
+              else {                                      // 미래인 경우
+                  newDIV.className = "futureDay";
+                  newDIV.onclick = function () { choiceDate(this); }
+              }
+          }
+      }
+      buildCalendar()
+      // 날짜 선택
+      function choiceDate(newDIV) {
+          if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
+              document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
+          }
+          newDIV.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
+      }
+
+      // 이전달 버튼 클릭
+      function prevCalendar() {
+          nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
+          buildCalendar();    // 달력 다시 생성
+      }
+      // 다음달 버튼 클릭
+      function nextCalendar() {
+          nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
+          buildCalendar();    // 달력 다시 생성
+      }
+
+      // input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
+      function leftPad(value) {
+          if (value < 10) {
+              value = "0" + value;
+              return value;
+          }
+          return value;
+      }
+
+  $(document).ready(function(){
+    $('.btn_data').on('click', function(){
+      $('.calendar_container').show();
+     })
+  })
+
+  $('.btn_succes').on('click',function(){
+    $('.calendar_container').hide();
+  })
+
+// 지역설정
+
+    $('.btn_area').on('click',function(){
+        $('.area_container').show();
+    })
+
+    $('.btn_succes2').on('click',function(){
+        $('.area_container').hide();
+    })
+
+$('document').ready(function() {
+   var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
+   var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
+   var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
+   var area3 = ["대덕구","동구","서구","유성구","중구"];
+   var area4 = ["광산구","남구","동구",     "북구","서구"];
+   var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
+   var area6 = ["남구","동구","북구","중구","울주군"];
+   var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
+   var area8 = ["고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시","가평군","양평군","여주군","연천군"];
+   var area9 = ["강릉시","동해시","삼척시","속초시","원주시","춘천시","태백시","고성군","양구군","양양군","영월군","인제군","정선군","철원군","평창군","홍천군","화천군","횡성군"];
+   var area10 = ["제천시","청주시","충주시","괴산군","단양군","보은군","영동군","옥천군","음성군","증평군","진천군","청원군"];
+   var area11 = ["계룡시","공주시","논산시","보령시","서산시","아산시","천안시","금산군","당진군","부여군","서천군","연기군","예산군","청양군","태안군","홍성군"];
+   var area12 = ["군산시","김제시","남원시","익산시","전주시","정읍시","고창군","무주군","부안군","순창군","완주군","임실군","장수군","진안군"];
+   var area13 = ["광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
+   var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
+   var area15 = ["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
+   var area16 = ["서귀포시","제주시","남제주군","북제주군"];
+
+
+
+ // 시/도 선택 박스 초기화
+
+  $("select[name^=sido]").each(function() {
+  $selsido = $(this);
+  $.each(eval(area0), function() {
+  $selsido.append("<option value='"+this+"'>"+this+"</option>");
+  });
+  $('#gugun1').append("<option value=''>구/군 선택</option>");
+ });
+
+
+
+ // 시/도 선택시 구/군 설정
+
+ $("select[name^=sido]").change(function() {
+  var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
+  var $gugun = $('#gugun1'); // 선택영역 군구 객체
+  $("option",$gugun).remove(); // 구군 초기화
+
+  if(area == "area0")
+   $gugun.append("<option value=''>구/군 선택</option>");
+  else {
+   $.each(eval(area), function() {
+    $gugun.append("<option value='"+this+"'>"+this+"</option>");
+   });
+  }
+ });
+
+
+});
+
+$('.btn_select').on('click',function(){
+        $('.select_container').show();
+    })
+
+$('.btn_succes3').on('click',function(){
+        $('.select_container').hide();
+    })
+    </script>
+
+</body>
+</html>
+<!-- if(menu.style.display == 'none'){
+  menu.style.display = "block";
+}else{
+  menu.style.display = "none";
+} -->

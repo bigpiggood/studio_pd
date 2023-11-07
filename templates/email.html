@@ -1,0 +1,39 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="/static/css/email.css">
+</head>
+<body>
+    
+        
+    <form action="/email" method="POST">
+        <div class="wrap">
+            <div class="email">
+                <h2>이메일 인증</h2>
+                <div class="login_id">
+                    <input type="text" name="usermail" id="" placeholder="이메일 입력">
+                </div>
+                <div class="submit">
+                    <button type="submit">인증번호 발송</button>
+                </div>
+                <div class="go_home">
+                    <a href="/">홈으로</a>
+                </div>
+            </div>
+        </div>
+    </form>
+        
+</body>
